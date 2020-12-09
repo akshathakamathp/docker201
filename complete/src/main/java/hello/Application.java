@@ -20,14 +20,14 @@ public class Application {
 	@GetMapping("/redis")
 	public String getRedisData() {
 
-		try (Jedis jedis = new Jedis("srvstfop52v", 6379, 5000)) {
+		try (Jedis jedis = new Jedis("localhost", 6379, 5000)) {
 			System.out.println("Connection successful");
 			System.out.println("Getting response from the server: " + jedis.ping());
 			String pingReply = jedis.ping();
 			return "Getting response from the server: " + pingReply;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return e.getStackTrace().toString();
+			return e.getMessage();
 		}
 		
 	}
