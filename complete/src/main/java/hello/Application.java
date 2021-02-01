@@ -21,7 +21,7 @@ public class Application {
 
 	@GetMapping("/redis")
 	public String getRedisData(@RequestParam String key) {
-		try (Jedis jedis = new Jedis("172.17.0.2", 6379, 5000)) {
+		try (Jedis jedis = new Jedis("172.17.0.3", 6379, 5000)) {
 			System.out.println("Connection successful");
 			System.out.println("Getting response from the server: " + jedis.get(key));
 			String pingReply = jedis.get(key);
@@ -35,7 +35,7 @@ public class Application {
 	
 	@PutMapping("/redis")
 	public String putRedisData(@RequestParam String key,@RequestParam String value) {
-		try (Jedis jedis = new Jedis("172.17.0.2", 6379, 5000)) {
+		try (Jedis jedis = new Jedis("172.17.0.3", 6379, 5000)) {
 			System.out.println("Connection successful");
 			jedis.set(key, value);
 			String pingReply = jedis.ping();
